@@ -52,5 +52,6 @@ sed -i '' "/$build_info/ a\\
   $repository_info
 " package.json
 
+yarn global add typescript
 yarn install
 yarn build --mac-dmg
