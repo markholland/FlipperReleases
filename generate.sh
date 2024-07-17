@@ -18,19 +18,8 @@ tar -xf $SOURCE_TAR -C flipper --strip-components=1
 # Apply patches
 pushd flipper
 git init && git add . && git commit -m "Original source"
-
-
 git remote add flipperUpstream https://github.com/markholland/flipper.git
 git fetch flipperUpstream m1-universal
-
-git cherry-pick --keep-redundant-commits \
-e4039306d0819f7b3668fb2a9a4a581ce5dc1bab \
-a87d3ccc9c19c26bcfe99e154b0aae1d05ba95d9 \
-52d78d94528a1dc8d607fb735e02a9df0480008b \
-420f53802558bfa49d13ba5c96cf33d5b7392fc2 \
-b10207f9bdf9eeb0bd08534cc5a64c6f9cec7597 \
-6768711253d080a2509b81b963c885327337b34f \
-230bb37a055139156e964e705d2dc25966c2d4a9
 
 pushd desktop
 if grep -Fxq "@electron/universal" package.json
@@ -39,7 +28,7 @@ then
 else
     echo "Patching electron/universal in the resolutions"
     resolutions='"resolutions": {'
-    electron_resolution='"@electron/universal": "1.3.4",'
+    electron_resolution='"@electron/universal": "2.0.0",'
     sed -i '' "/$resolutions/ a\\
     $electron_resolution
     " package.json
@@ -54,4 +43,4 @@ sed -i '' "/$build_info/ a\\
 " package.json
 
 yarn install
-yarn build --mac-dmg
+yarn build --mac
