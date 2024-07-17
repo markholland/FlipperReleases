@@ -43,4 +43,4 @@ sed -i '' "/$build_info/ a\\
 " package.json
 
 yarn install
-yarn build --mac
+yarn build --mac-dmg
