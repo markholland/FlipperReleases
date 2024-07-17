@@ -18,8 +18,8 @@ tar -xf $SOURCE_TAR -C flipper --strip-components=1
 # Apply patches
 pushd flipper
 git init && git add . && git commit -m "Original source"
-git remote add flipperUpstream https://github.com/markholland/flipper.git
-git fetch flipperUpstream m1-universal
+git remote add flipperUpstream https://github.com/facebook/flipper
+git fetch flipperUpstream pull/3553/head:universalBuild
 
 pushd desktop
 if grep -Fxq "@electron/universal" package.json
